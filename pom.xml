@@ -219,14 +219,6 @@
             <properties>
                 <java.version>8</java.version>
             </properties>
-            <dependencies>
-                <!-- JDK 9+ run fix -->
-                <dependency>
-                    <groupId>javax.xml.bind</groupId>
-                    <artifactId>jaxb-api</artifactId>
-                    <scope>runtime</scope>
-                </dependency>
-            </dependencies>
             <build>
                 <plugins>
                     <plugin>
