@@ -58,6 +58,22 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-tomcat</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-undertow</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.jboss.spec.javax.annotation</groupId>
+                    <artifactId>jboss-annotations-api_1.2_spec</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -86,8 +102,9 @@
             <artifactId>cache-api</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.ehcache</groupId>
-            <artifactId>ehcache</artifactId>
+            <groupId>org.cache2k</groupId>
+            <artifactId>cache2k-core</artifactId>
+            <version>1.0.2.Final</version>
         </dependency>
 
         <!-- webjars -->
@@ -132,7 +149,7 @@
             <!-- https://jira.spring.io/browse/SPR-16776 -->
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
-            <version>5.1.0.BUILD-SNAPSHOT</version>
+            <version>5.0.6.BUILD-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
@@ -332,8 +349,9 @@
                                 <configuration>
                                     <outputDirectory>${project.build.directory}/modules
                                     </outputDirectory>
-                                    <includeScope>compile</includeScope>
-                                    <excludeArtifactIds>jboss-transaction-api_1.2_spec
+                                    <includeScope>runtime</includeScope>
+                                    <excludeArtifactIds>
+                                        jboss-transaction-api_1.2_spec
                                     </excludeArtifactIds>
                                 </configuration>
                             </execution>
@@ -350,7 +368,6 @@
                                         <artifactItem>
                                             <groupId>org.jboss.spec.javax.transaction</groupId>
                                             <artifactId>jboss-transaction-api_1.2_spec</artifactId>
-                                            <version>1.1.1.Final</version>
                                         </artifactItem>
                                     </artifactItems>
                                 </configuration>
