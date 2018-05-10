@@ -440,6 +440,9 @@
                         <configuration>
                             <contextDirectory>${project.build.directory}</contextDirectory>
                             <repository>${project.artifactId}</repository>
+                            <buildArgs>
+                                <JVM_OPTS>-Xmx512m</JVM_OPTS>
+                            </buildArgs>
                         </configuration>
                         <dependencies>
                             <!-- JDK 10 fix -->
