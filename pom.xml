@@ -439,6 +439,7 @@
                         <version>1.4.0</version>
                         <configuration>
                             <contextDirectory>${project.build.directory}</contextDirectory>
+                            <repository>${project.artifactId}</repository>
                         </configuration>
                         <dependencies>
                             <!-- JDK 10 fix -->
