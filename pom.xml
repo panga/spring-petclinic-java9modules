@@ -412,19 +412,45 @@
                         </executions>
                     </plugin>
                     <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-resources-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>filter-dockerfile</id>
+                                <phase>validate</phase>
+                                <goals>
+                                    <goal>copy-resources</goal>
+                                </goals>
+                                <configuration>
+                                    <outputDirectory>${project.build.directory}</outputDirectory>
+                                    <resources>
+                                        <resource>
+                                            <directory>src/main/docker</directory>
+                                            <filtering>true</filtering>
+                                        </resource>
+                                    </resources>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
                         <groupId>com.spotify</groupId>
-                        <artifactId>docker-maven-plugin</artifactId>
-                        <version>1.0.0</version>
+                        <artifactId>dockerfile-maven-plugin</artifactId>
+                        <version>1.4.0</version>
                         <configuration>
-                            <dockerDirectory>${project.build.directory}</dockerDirectory>
-                            <imageName>${project.artifactId}</imageName>
+                            <contextDirectory>${project.build.directory}</contextDirectory>
                         </configuration>
                         <dependencies>
                             <!-- JDK 10 fix -->
                             <dependency>
+                                <groupId>org.codehaus.plexus</groupId>
+                                <artifactId>plexus-archiver</artifactId>
+                                <version>3.4</version>
+                            </dependency>
+                            <dependency>
                                 <groupId>javax.activation</groupId>
-                                <artifactId>activation</artifactId>
-                                <version>1.1.1</version>
+                                <artifactId>javax.activation-api</artifactId>
+                                <version>1.2.0</version>
                             </dependency>
                         </dependencies>
                         <executions>
